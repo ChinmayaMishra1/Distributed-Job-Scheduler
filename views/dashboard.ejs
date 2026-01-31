@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+    th { background: #f4f4f4; }
+    .PENDING { color: orange; }
+    .RUNNING { color: blue; }
+    .SUCCESS { color: green; }
+    .FAILED { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Job Dashboard</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Retries</th>
+      <th>Created</th>
+    </tr>
+
+    <% jobs.forEach(job => { %>
+      <tr>
+        <td><%= job._id %></td>
+        <td><%= job.type %></td>
+        <td class="<%= job.status %>"><%= job.status %></td>
+        <td><%= job.retryCount %></td>
+        <td><%= job.createdAt.toLocaleString() %></td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
